@@ -1,3 +1,4 @@
+import { generatePath } from 'react-router-dom';
 import {
   Avatar,
   Card,
@@ -7,35 +8,39 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import { Country } from '../../api/types';
-
-type CountryCardProps = Country;
+import { Country } from '../../api';
+import NavLink from '../Link/NavLink';
+import { RouteKey } from '../../navigation';
 
 const CountryCard = ({
   country,
-  countryInfo,
   cases,
   deaths,
   recovered,
-}: CountryCardProps) => {
-  return (
-    <Card>
+  countryInfo,
+}: Country) => (
+  <Card>
+    <NavLink
+      to={generatePath(RouteKey.Country, { id: country })}
+      underline="none"
+      color="inherit"
+    >
       <CardHeader avatar={<Avatar src={countryInfo.flag} />} title={country} />
-      <CardContent>
-        <List dense>
-          <ListItem>
-            <ListItemText primary={`Cases: ${cases}`} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary={`Deaths: ${deaths}`} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary={`Recovered: ${recovered}`} />
-          </ListItem>
-        </List>
-      </CardContent>
-    </Card>
-  );
-};
+    </NavLink>
+    <CardContent>
+      <List dense>
+        <ListItem>
+          <ListItemText primary={`Cases: ${cases}`} />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary={`Deaths: ${deaths}`} />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary={`Recovered: ${recovered}`} />
+        </ListItem>
+      </List>
+    </CardContent>
+  </Card>
+);
 
 export default CountryCard;
