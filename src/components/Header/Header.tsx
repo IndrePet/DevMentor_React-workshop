@@ -1,5 +1,7 @@
 import { AppBar } from '@mui/material';
 import { Container } from '@mui/system';
+import NavLink from '../Link/NavLink';
+import { RouteKey } from '../../navigation/routes';
 
 const Header = () => {
   return (
@@ -13,8 +15,12 @@ const Header = () => {
           height: '50px',
         }}
       >
-        <span>Home</span>
-        <span>Countries</span>
+        <NavLink color="inherit" underline="none" to={RouteKey.Index}>
+          Home
+        </NavLink>
+        <NavLink color="inherit" underline="none" to={RouteKey.Countries}>
+          Countries
+        </NavLink>
       </Container>
     </AppBar>
   );
